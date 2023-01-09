@@ -2,13 +2,29 @@ import React from "react";
 import { useState } from "react";
 
 function Register(props) {
+  const [fname, setFName] = useState();
+  const [lname, setLName] = useState();
+  const [mobile, setMobile] = useState();
   const [email, setEmail] = useState();
   const [pass, setPass] = useState();
+
+  const [fnameValidation, setFNameValidation] = useState("hidden");
+  const [lnameValidation, setLNameValidation] = useState("hidden");
+  const [mobileValidation, setMobileValidation] = useState("hidden");
   const [emailValidation, setEmailValidation] = useState("hidden");
   const [passValidation, setPassValidation] = useState("hidden");
 
   //Login validation
   const handlevalidation = () => {
+    if (!fname) {
+      setFNameValidation("");
+    }
+    if (!lname) {
+      setLNameValidation("");
+    }
+    if (!mobile) {
+      setMobileValidation("");
+    }
     if (!email) {
       setEmailValidation("");
     }
@@ -16,9 +32,10 @@ function Register(props) {
       setPassValidation("");
     }
   };
+
   return (
     <section className={props.hide}>
-      <div className="p-6 h-full text-gray-800">
+      <div className="bg-[#dfeaf0] p-6 h-full text-gray-800">
         <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
           <div className="grow-0 shrink-1 md:shrink-0 basis-auto mb-12 md:mb-0">
             <img
@@ -35,39 +52,39 @@ function Register(props) {
 
               <div className="mb-6">
                 <input
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  value={fname}
+                  onChange={(event) => setFName(event.target.value)}
                   type="text"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   placeholder="First Name"
                 />
-                <div className={emailValidation}>
+                <div className={fnameValidation}>
                   <div className="text-red-600">FirstName is mandatory</div>
                 </div>
               </div>
 
               <div className="mb-6">
                 <input
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  value={lname}
+                  onChange={(event) => setLName(event.target.value)}
                   type="text"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   placeholder="Last Name"
                 />
-                <div className={emailValidation}>
+                <div className={lnameValidation}>
                   <div className="text-red-600">LastName is mandatory</div>
                 </div>
               </div>
 
               <div className="mb-6">
                 <input
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  value={mobile}
+                  onChange={(event) => setMobile(event.target.value)}
                   type="number"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   placeholder="Mobile Number"
                 />
-                <div className={emailValidation}>
+                <div className={mobileValidation}>
                   <div className="text-red-600">Mobile number is mandatory</div>
                 </div>
               </div>
