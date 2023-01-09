@@ -7,6 +7,7 @@ function Login() {
   const [emailValidation, setEmailValidation] = useState("hidden");
   const [passValidation, setPassValidation] = useState("hidden");
 
+  //Login validation
   const handlevalidation = () => {
     if (!email) {
       setEmailValidation("");
