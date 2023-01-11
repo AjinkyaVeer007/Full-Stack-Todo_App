@@ -46,12 +46,12 @@ function Login() {
   return (
     <>
       <section>
-        <div className="p-6 h-full text-gray-800">
+        <div className="p-6 h-screen bg-[#dee4f8] text-gray-800">
           <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
             <div className="grow-0 shrink-1 md:shrink-0 basis-auto mb-12 md:mb-0">
               <img
-                src="https://i.pinimg.com/564x/5b/97/c8/5b97c8e92cc8da6fbbeec39e27ff4e28.jpg"
-                className="lg:w-[320px] md:w-[260px] w-[200px]"
+                src="https://img.freepik.com/free-photo/3d-render-todo-check-list-with-ticks-task-test_107791-15401.jpg?w=740&t=st=1673449053~exp=1673449653~hmac=ea5cc011a49034f6c813a448ce2fd4f9b05840bcbb218f8c3ebb2b3e3ff053f0"
+                className="lg:w-[520px] w-[200px]"
                 alt="img"
               />
             </div>
