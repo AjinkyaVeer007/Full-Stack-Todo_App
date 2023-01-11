@@ -10,4 +10,4 @@ router.post("/register", register);
 
 router.post("/login", login);
 
-router.get("/dashboard/:id", dashboard);
+router.get("/dashboard/:id", auth, dashboard);
