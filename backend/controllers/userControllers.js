@@ -51,4 +51,53 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {};
+exports.login = async (req, res) => {
+  try {
+    //collect all information
+    const { email, password } = req.body;
+
+    //validate the date
+    if (!(email, password)) {
+      res.status(401).send("All fields are mandatory");
+    }
+
+    //check user in database
+    const user = await User.findOne({ email });
+    if (!user) {
+      res.status(401).send("Need to register first");
+    }
+
+    //match the password & create token and send
+    if (user && (await bcrypt.compare(password, user.password))) {
+      const token = jwt.sign(
+        {
+          id: user._id,
+          email,
+        },
+        "shhhhh",
+        { expiresIn: "2h" }
+      );
+      user.password = undefined;
+      user.token = token;
+
+      const options = {
+        expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
+      };
+
+      res.status(200).cookie("token", token, options).json({
+        success: true,
+        token,
+        user,
+      });
+    } else {
+      res.status(401).send("Email and password is incorrect");
+    }
+  } catch (error) {
+    console.log("Fail to login");
+    console.log(error);
+  }
+};
+
+exports.dashboard = (req, res) => {
+  res.send("Welcome to Dashboard");
+};
