@@ -12,6 +12,12 @@
   - bcrypt
   - cookieparser
 
+### Frontend
+
+- React
+- Tailwind CSS
+- Axios
+
 ## Author-Contact
 
 - [Ajinkya-Github](https://github.com/AjinkyaVeer007)
