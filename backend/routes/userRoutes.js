@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const PORT = process.env.PORT;
-const connectDB = require("./config/database");
+
+const connectDB = require("../config/database");
+const auth = require("../middleware/auth");
 connectDB.connect();
 const {
   register,
@@ -13,8 +14,4 @@ router.post("/register", register);
 
 router.post("/login", login);
 
-router.get("/dashboard/:id", auth, dashboard);
-
-app.listen(PORT, () => {
-  console.log(`Port is running at ${PORT}`);
-});
+router.get("/dashboard/", auth, dashboard);
