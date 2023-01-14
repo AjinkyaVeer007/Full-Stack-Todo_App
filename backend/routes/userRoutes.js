@@ -14,4 +14,6 @@ router.post("/register", register);
 
 router.post("/login", login);
 
-router.get("/dashboard/", auth, dashboard);
+router.get("/dashboard", auth, dashboard);
+
+module.exports = router;
