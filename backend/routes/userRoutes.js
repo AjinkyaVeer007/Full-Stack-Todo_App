@@ -8,6 +8,7 @@ const {
   register,
   login,
   dashboard,
+  logout,
 } = require("../controllers/userControllers");
 
 router.post("/register", register);

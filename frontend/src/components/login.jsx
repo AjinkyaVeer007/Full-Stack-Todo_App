@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useState();
@@ -14,11 +15,23 @@ function Login() {
   const [hide, setHide] = useState("");
 
   //Validation
-  const loginValidation = () => {
+  const loginValidation = async () => {
     if (!email || !pass) {
       setValidation("");
+    } else {
+      const data = {
+        email: email,
+        password: pass,
+      };
+
+      const res = await axios.post("http://localhost:4000/login", data);
+      console.log(res);
+      setEmail(null);
+      setPass(null);
     }
   };
+
+  const logout = async () => {};
 
   const registerValidation = () => {
     if (!email || !pass || !fName || !LName) {
@@ -143,6 +156,13 @@ function Login() {
                       </div>
                     </div>
                   </div>
+                  <button
+                    onClick={logout}
+                    type="button"
+                    className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                  >
+                    Logout
+                  </button>
                 </div>
               </form>
             </div>
