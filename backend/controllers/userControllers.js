@@ -1,6 +1,7 @@
 const User = require("../model/user.login");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+require("express");
 
 exports.register = async (req, res) => {
   try {
@@ -100,4 +101,13 @@ exports.login = async (req, res) => {
 
 exports.dashboard = (req, res) => {
   res.send("Welcome to Dashboard");
+};
+
+exports.logout = (req, res) => {
+  try {
+    res.clearCookie("token");
+  } catch (error) {
+    console.log("fail to clear cookies");
+    console.log(error);
+  }
 };
