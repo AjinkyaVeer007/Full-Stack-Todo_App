@@ -11,12 +11,14 @@
   - jsonwebtoken
   - bcrypt
   - cookieparser
+  - cors
 
 ### Frontend
 
 - React
 - Tailwind CSS
 - Axios
+- Routes
 
 ## Author-Contact
 
