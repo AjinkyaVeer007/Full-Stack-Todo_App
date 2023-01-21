@@ -31,21 +31,21 @@ exports.register = async (req, res) => {
       password: encryptPassword,
     });
 
-    const token = jwt.sign(
-      {
-        id: user._id,
-        email,
-      },
-      "shhhhh",
-      { expiresIn: "2h" }
-    );
+    // const token = jwt.sign(
+    //   {
+    //     id: user._id,
+    //     email,
+    //   },
+    //   "shhhhh",
+    //   { expiresIn: "2h" }
+    // );
 
-    user.token = token;
+    // user.token = token;
 
-    // don't want to send password
-    user.password = undefined;
+    // // don't want to send password
+    // user.password = undefined;
 
-    res.status(401).json(user);
+    // res.status(401).json(user);
   } catch (error) {
     console.log(error);
     console.log("Fail to register user");
@@ -79,13 +79,19 @@ exports.login = async (req, res) => {
         { expiresIn: "2h" }
       );
       user.password = undefined;
-      user.token = token;
+      // user.token = token;
 
-      const options = {
-        expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
-      };
+      // const options = {
+      //   expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
+      // };
 
-      res.status(200).cookie("token", token, options).json({
+      // res.status(200).cookie("token", token, options).json({
+      //   success: true,
+      //   token,
+      //   user,
+      // });
+
+      res.status(200).json({
         success: true,
         token,
         user,
@@ -100,14 +106,15 @@ exports.login = async (req, res) => {
 };
 
 exports.dashboard = (req, res) => {
-  res.send("Welcome to Dashboard");
+  console.log("Welcome to Dashboard");
+  return res.send("Welcome to Dashboard");
 };
 
 exports.logout = (req, res) => {
   try {
-    res.clearCookie("token");
+    req.cookies = [];
   } catch (error) {
-    console.log("fail to clear cookies");
+    console.log("Fail to expire token");
     console.log(error);
   }
 };
