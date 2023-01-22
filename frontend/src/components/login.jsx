@@ -44,8 +44,6 @@ function Login() {
     }
   };
 
-  const logout = async () => {};
-
   const registerValidation = async () => {
     if (!email || !pass || !fName || !LName) {
       setValidation("");
