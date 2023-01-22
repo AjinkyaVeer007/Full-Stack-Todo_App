@@ -46,7 +46,7 @@ function Login() {
 
   const logout = async () => {};
 
-  const registerValidation = () => {
+  const registerValidation = async () => {
     if (!email || !pass || !fName || !LName) {
       setValidation("");
     } else {
@@ -58,6 +58,15 @@ function Login() {
       setHide("");
       setEmail("");
       setPass("");
+
+      const data = {
+        firstname: fName,
+        lastname: LName,
+        email: email,
+        password: pass,
+      };
+
+      await axios.post("http://localhost:4000/register", data);
     }
   };
 
