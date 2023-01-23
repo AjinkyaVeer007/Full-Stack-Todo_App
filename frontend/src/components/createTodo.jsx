@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { BsFillBrushFill } from "react-icons/bs";
 
@@ -8,15 +8,21 @@ function CreateTodo() {
   const [taskarr, setTaskArr] = useState([]);
 
   const handleTasks = () => {
+    console.log(taskarr);
     if (task) {
       setTaskArr((currentvalue) => [...currentvalue, task]);
       setTask("");
+      console.log(taskarr);
     }
   };
 
-  const deleteTask = (index) => {
-    taskarr.splice(index, 1);
-    console.log(taskarr);
+  const deleteTask = (key) => {
+    console.log(key);
+    // const newarr = taskarr.filter((item) =>  !== index)
+    // const newarr = taskarr.filter((item) => item !== taskarr[index]);
+    // console.log(newarr);
+    // setTaskArr(newarr);
+    // console.log(taskarr);
   };
 
   return (
@@ -34,9 +40,6 @@ function CreateTodo() {
             onChange={(event) => {
               setTitle(event.target.value);
             }}
-            type="text"
-            id="full-name"
-            name="full-name"
             className="w-full bg-white rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
         </div>
@@ -51,9 +54,6 @@ function CreateTodo() {
               onChange={(e) => {
                 setTask(e.target.value);
               }}
-              type="email"
-              id="email"
-              name="email"
               className="w-full bg-white rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
 
