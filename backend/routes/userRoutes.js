@@ -9,6 +9,7 @@ const {
   login,
   dashboard,
   createTodo,
+  getTodos,
 } = require("../controllers/userControllers");
 
 router.post("/register", register);
@@ -18,5 +19,7 @@ router.post("/login", login);
 router.get("/dashboard", auth, dashboard);
 
 router.post("/createTodo", auth, createTodo);
+
+router.get("/getTodos", auth, getTodos);
 
 module.exports = router;

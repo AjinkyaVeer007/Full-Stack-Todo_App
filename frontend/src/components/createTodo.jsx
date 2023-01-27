@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 import ShowTodo from "./showTodo";
+import ShowMyTodo from "./showMyTodo";
 
 function CreateTodo() {
   const [title, setTitle] = useState("");
@@ -70,6 +71,7 @@ function CreateTodo() {
         setTaskArr={setTaskArr}
         setTask={setTask}
       />
+      <ShowMyTodo />
     </div>
   );
 }

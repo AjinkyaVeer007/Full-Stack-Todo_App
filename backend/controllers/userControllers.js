@@ -133,3 +133,16 @@ exports.createTodo = async (req, res) => {
     res.status(401).json(error);
   }
 };
+
+exports.getTodos = async (req, res) => {
+  try {
+    const user = await UserTodo.find();
+    res.status(401).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    console.log("Fail to get todos");
+  }
+};

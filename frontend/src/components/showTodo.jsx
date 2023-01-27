@@ -52,6 +52,8 @@ function ShowTodo(props) {
     props.setTaskArr([]);
   };
 
+  //get all todos created by that authorized user only
+
   return (
     <div className="flex flex-col justify-between rounded bg-red-500 h-50 w-[400px] px-4">
       <div>
