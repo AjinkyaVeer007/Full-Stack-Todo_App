@@ -1,4 +1,5 @@
 const User = require("../model/user.login");
+const UserTodo = require("../model/user.todo");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 require("express");
@@ -110,11 +111,25 @@ exports.dashboard = (req, res) => {
   return res.send("Welcome to Dashboard");
 };
 
-exports.logout = (req, res) => {
+exports.createTodo = async (req, res) => {
   try {
-    req.cookies = [];
+    const { Title, Tasks, userId } = req.body;
+
+    if (!Title && Tasks.length > 0) {
+      throw new Error("All fields are mandatory");
+    }
+
+    const user = await UserTodo.create({ Title, Tasks, userId });
+
+    res.status(201).json({
+      success: true,
+      message: "Todo created successfully",
+      user,
+      userId,
+    });
   } catch (error) {
-    console.log("Fail to expire token");
     console.log(error);
+    console.log("Fail to create todo");
+    res.status(401).json(error);
   }
 };

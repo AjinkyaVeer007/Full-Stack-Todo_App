@@ -65,6 +65,7 @@ function CreateTodo() {
       </div>
       <ShowTodo
         title={title}
+        setTitle={setTitle}
         arr={taskarr}
         setTaskArr={setTaskArr}
         setTask={setTask}

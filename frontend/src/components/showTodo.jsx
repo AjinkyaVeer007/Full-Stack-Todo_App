@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
+import axios from "axios";
 
 function ShowTodo(props) {
   const [showbtn, setShowBtn] = useState("hidden");
@@ -27,6 +28,29 @@ function ShowTodo(props) {
     props.setTask(selectedTask);
     props.setTaskArr(props.arr.filter((task) => task !== selectedTask));
   }
+
+  // Saving created todo in db
+  const newTodo = async () => {
+    const data = {
+      Title: props.title,
+      Tasks: props.arr,
+      userId: localStorage.getItem("userId"),
+    };
+    console.log(data);
+    const config = {
+      headers: { Authorization: `${localStorage.getItem("token")}` },
+    };
+    console.log(config);
+
+    const res = await axios.post(
+      "http://localhost:4000/createTodo",
+      data,
+      config
+    );
+    // console.log(res);
+    props.setTitle("");
+    props.setTaskArr([]);
+  };
 
   return (
     <div className="flex flex-col justify-between rounded bg-red-500 h-50 w-[400px] px-4">
@@ -60,6 +84,7 @@ function ShowTodo(props) {
         })}
       </div>
       <button
+        onClick={newTodo}
         className={`${showbtn} h-[30px] bg-blue-500 m-4 rounded hover:bg-blue-600 text-white font-bold`}
       >
         SAVE TODO

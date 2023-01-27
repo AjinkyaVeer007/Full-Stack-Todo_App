@@ -11,6 +11,10 @@ const userTodoSchema = new mongoose.Schema({
     trim: true,
     require: true,
   },
+  userId: {
+    type: String,
+    require: true,
+  },
 });
 
-module.exports = mongoose.model("User", userTodoSchema);
+module.exports = mongoose.model("UserTodo", userTodoSchema);

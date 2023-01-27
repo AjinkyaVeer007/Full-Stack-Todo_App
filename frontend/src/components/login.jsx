@@ -32,7 +32,7 @@ function Login() {
         .then((data) => {
           console.log(data);
           localStorage.setItem("token", data.data?.token);
-          localStorage.setItem("useId", data.data?.user?._id);
+          localStorage.setItem("userId", data.data?.user?._id);
         })
         .catch((err) => {
           console.log(err);
