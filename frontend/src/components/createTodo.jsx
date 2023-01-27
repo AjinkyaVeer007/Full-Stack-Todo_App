@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
-import { BsFillBrushFill } from "react-icons/bs";
+
+import ShowTodo from "./showTodo";
 
 function CreateTodo() {
   const [title, setTitle] = useState("");
@@ -14,15 +15,6 @@ function CreateTodo() {
       setTask("");
       console.log(taskarr);
     }
-  };
-
-  const deleteTask = (key) => {
-    console.log(key);
-    // const newarr = taskarr.filter((item) =>  !== index)
-    // const newarr = taskarr.filter((item) => item !== taskarr[index]);
-    // console.log(newarr);
-    // setTaskArr(newarr);
-    // console.log(taskarr);
   };
 
   return (
@@ -69,19 +61,12 @@ function CreateTodo() {
           Noting down is way better than remembering.
         </p>
       </div>
-      <div className="rounded bg-red-500 h-50 w-[400px] px-4">
-        <h1 className="text-white text-center mt-2 text-2xl font-semibold font-sans border-b-2 border-red-400 p-2">
-          {title}
-        </h1>
-        {taskarr.map((element) => {
-          return (
-            <div className="flex justify-around items-center text-white border-b-2 border-red-400 p-2">
-              <li>{element}</li>
-              <BsFillBrushFill onClick={deleteTask} />
-            </div>
-          );
-        })}
-      </div>
+      <ShowTodo
+        title={title}
+        arr={taskarr}
+        setTaskArr={setTaskArr}
+        setTask={setTask}
+      />
     </div>
   );
 }
