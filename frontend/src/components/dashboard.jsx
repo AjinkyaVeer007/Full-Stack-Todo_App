@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Logout from "./logout";
 import CreateTodo from "./createTodo";
+import Navbar from "./navbar";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -24,9 +24,8 @@ const Dashboard = () => {
   access();
 
   return (
-    <div className="bg-gray-100">
-      <h1>Welcome to Dashboard</h1>
-      <Logout />
+    <div className="bg-gray-100 h-screen">
+      <Navbar />
       <CreateTodo />
     </div>
   );
