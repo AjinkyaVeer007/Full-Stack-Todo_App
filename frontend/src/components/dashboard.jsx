@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import CreateTodo from "./createTodo";
 import Navbar from "./navbar";
-import ShowMyTodo from "./showMyTodo";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -29,7 +28,6 @@ const Dashboard = () => {
     <div className="bg-gray-100">
       <Navbar />
       <CreateTodo />
-      <ShowMyTodo />
     </div>
   );
 };

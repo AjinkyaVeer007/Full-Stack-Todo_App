@@ -3,7 +3,7 @@ import moment from "moment/moment";
 import React, { useEffect, useState } from "react";
 import EditDelete from "./editDelete";
 
-function ShowMyTodo() {
+function ShowMyTodo(props) {
   const config = {
     headers: {
       Authorization: `${localStorage.getItem("token")}`,
@@ -42,7 +42,7 @@ function ShowMyTodo() {
         {alltodos &&
           alltodos.map((todo, index) => {
             return (
-              <div className="block rounded-lg shadow-lg bg-white max-w-sm text-center">
+              <div className="hover:-translate-y-1 transition ease-in-out delay-250 block rounded-lg shadow-lg bg-white max-w-sm text-center">
                 <div className="py-3 px-6 border-b border-gray-300">
                   Created by : {todo.userName || "Me"}
                 </div>
@@ -50,11 +50,18 @@ function ShowMyTodo() {
                   <h5 className="text-gray-900 text-xl font-medium mb-2">
                     {todo.Title}
                   </h5>
-                  {todo.Tasks &&
-                    todo.Tasks.map((task) => {
-                      return <li>{task}</li>;
-                    })}
-                  <EditDelete index={index} todo={todo} />
+                  <div className="flex flex-col items-start mt-4">
+                    {todo.Tasks &&
+                      todo.Tasks.map((task) => {
+                        return <li>{task}</li>;
+                      })}
+                  </div>
+                  <EditDelete
+                    index={index}
+                    todo={todo}
+                    setTitle={props.setTitle}
+                    setTaskArr={props.setTaskArr}
+                  />
                 </div>
                 <div className="py-3 px-6 border-t border-gray-300 text-gray-600">
                   {moment(todo.createdAt).format("MMMM Do YYYY, h:mm:ss a")}

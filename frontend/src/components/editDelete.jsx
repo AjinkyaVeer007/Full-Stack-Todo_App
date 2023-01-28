@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import axios from "axios";
@@ -23,7 +23,15 @@ function EditDelete(props) {
   };
 
   //Edit Todo logic
-  const handleEdit = async () => {};
+  const [editTasks, setEditTasks] = useState([]);
+
+  const handleEdit = async (user) => {
+    props.setTaskArr([null]);
+    const editTitle = user.Title;
+    props.setTitle(editTitle);
+    setEditTasks(user.Tasks);
+    props.setTaskArr([...editTasks]);
+  };
 
   return (
     <div className="flex justify-end gap-2 mt-8">
