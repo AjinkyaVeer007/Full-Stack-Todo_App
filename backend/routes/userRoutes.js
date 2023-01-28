@@ -10,6 +10,8 @@ const {
   dashboard,
   createTodo,
   getTodos,
+  deleteTodo,
+  editTodo,
 } = require("../controllers/userControllers");
 
 router.post("/register", register);
@@ -21,5 +23,9 @@ router.get("/dashboard", auth, dashboard);
 router.post("/createTodo", auth, createTodo);
 
 router.post("/getTodos", auth, getTodos);
+
+router.delete("/deleteTodo/:id", auth, deleteTodo);
+
+router.put("/editTodo/:id", auth, editTodo);
 
 module.exports = router;

@@ -38,9 +38,9 @@ function ShowMyTodo() {
 
   return (
     <div>
-      <div className="flex justify-center py-8 gap-2">
+      <div className="flex flex-wrap justify-center py-8 gap-4">
         {alltodos &&
-          alltodos.map((todo) => {
+          alltodos.map((todo, index) => {
             return (
               <div className="block rounded-lg shadow-lg bg-white max-w-sm text-center">
                 <div className="py-3 px-6 border-b border-gray-300">
@@ -54,7 +54,7 @@ function ShowMyTodo() {
                     todo.Tasks.map((task) => {
                       return <li>{task}</li>;
                     })}
-                  <EditDelete />
+                  <EditDelete index={index} todo={todo} />
                 </div>
                 <div className="py-3 px-6 border-t border-gray-300 text-gray-600">
                   {moment(todo.createdAt).format("MMMM Do YYYY, h:mm:ss a")}

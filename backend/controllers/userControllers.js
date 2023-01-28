@@ -147,3 +147,25 @@ exports.getTodos = async (req, res) => {
     console.log("Fail to get todos");
   }
 };
+
+exports.deleteTodo = async (req, res) => {
+  try {
+    const user = await UserTodo.findByIdAndDelete(req.params.id, req.body);
+    res.send("Todo deleted successfully");
+    console.log("Todo deleted successfully");
+    console.log(user, "Deleted user");
+  } catch (error) {
+    console.log(error);
+    console.log("Fail to delete todo");
+  }
+};
+
+exports.editTodo = async (req, res) => {
+  try {
+    await UserTodo.findByIdAndUpdate(req.params.id, req.body);
+    res.send("Todo edited successfully");
+  } catch (error) {
+    console.log(error);
+    console.log("Fail to update todo");
+  }
+};
