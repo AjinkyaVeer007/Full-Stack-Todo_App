@@ -33,6 +33,7 @@ function Login() {
           console.log(data);
           localStorage.setItem("token", data.data?.token);
           localStorage.setItem("userId", data.data?.user?._id);
+          localStorage.setItem("userName", data.data?.user?.firstname);
         })
         .catch((err) => {
           console.log(err);

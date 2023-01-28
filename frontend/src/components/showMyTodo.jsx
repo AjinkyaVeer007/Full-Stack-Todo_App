@@ -1,53 +1,67 @@
 import axios from "axios";
+import moment from "moment/moment";
 import React, { useEffect, useState } from "react";
+import EditDelete from "./editDelete";
 
 function ShowMyTodo() {
-  const [alltodos, setAllTodos] = useState();
+  const config = {
+    headers: {
+      Authorization: `${localStorage.getItem("token")}`,
+    },
+  };
+
+  const data = {
+    userId: localStorage.getItem("userId"),
+    userName: localStorage.getItem("userName"),
+  };
+
+  const [alltodos, setAllTodos] = useState(null);
 
   const getAllTodos = async () => {
-    // const data = {
-    //   userId: localStorage.getItem("userId"),
-    // };
-    const config = {
-      headers: { Authorization: `${localStorage.getItem("token")}` },
-    };
-
-    console.log(config);
-
-    const res = await axios.get(
-      "http://localhost:4000/getTodos",
-      config
-      //   data
-      //   userId
-    );
-    console.log(res.data);
+    await axios
+      .post("http://localhost:4000/getTodos", data, config)
+      .then((res) => {
+        setAllTodos(res.data?.user);
+        console.log("Todos loaded successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("Fail to load Todos");
+      });
   };
 
   useEffect(() => {
     getAllTodos();
-  });
+  }, []);
+
+  console.log(alltodos);
+
   return (
-    <div className="flex justify-center py-8">
-      <div className="block rounded-lg shadow-lg bg-white max-w-sm text-center">
-        <div className="py-3 px-6 border-b border-gray-300">Featured</div>
-        <div className="p-6">
-          <h5 className="text-gray-900 text-xl font-medium mb-2">
-            Special title treatment
-          </h5>
-          <p className="text-gray-700 text-base mb-4">
-            With supporting text below as a natural lead-in to additional
-            content.
-          </p>
-          <button
-            type="button"
-            className=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-          >
-            Button
-          </button>
-        </div>
-        <div className="py-3 px-6 border-t border-gray-300 text-gray-600">
-          2 days ago
-        </div>
+    <div>
+      <div className="flex justify-center py-8 gap-2">
+        {alltodos &&
+          alltodos.map((todo) => {
+            return (
+              <div className="block rounded-lg shadow-lg bg-white max-w-sm text-center">
+                <div className="py-3 px-6 border-b border-gray-300">
+                  Created by : {todo.userName || "Me"}
+                </div>
+                <div className="p-6">
+                  <h5 className="text-gray-900 text-xl font-medium mb-2">
+                    {todo.Title}
+                  </h5>
+                  {todo.Tasks &&
+                    todo.Tasks.map((task) => {
+                      return <li>{task}</li>;
+                    })}
+                  <EditDelete />
+                </div>
+                <div className="py-3 px-6 border-t border-gray-300 text-gray-600">
+                  {moment(todo.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
+                </div>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

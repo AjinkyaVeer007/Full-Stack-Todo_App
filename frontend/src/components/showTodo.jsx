@@ -35,10 +35,14 @@ function ShowTodo(props) {
       Title: props.title,
       Tasks: props.arr,
       userId: localStorage.getItem("userId"),
+      userName: localStorage.getItem("userName"),
     };
     console.log(data);
     const config = {
-      headers: { Authorization: `${localStorage.getItem("token")}` },
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`,
+        userId: localStorage.getItem("userId"),
+      },
     };
     console.log(config);
 
@@ -47,7 +51,7 @@ function ShowTodo(props) {
       data,
       config
     );
-    // console.log(res);
+    console.log(res);
     props.setTitle("");
     props.setTaskArr([]);
   };

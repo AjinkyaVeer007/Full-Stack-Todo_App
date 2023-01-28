@@ -20,6 +20,6 @@ router.get("/dashboard", auth, dashboard);
 
 router.post("/createTodo", auth, createTodo);
 
-router.get("/getTodos", auth, getTodos);
+router.post("/getTodos", auth, getTodos);
 
 module.exports = router;

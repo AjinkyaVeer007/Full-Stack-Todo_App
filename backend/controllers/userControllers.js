@@ -113,19 +113,18 @@ exports.dashboard = (req, res) => {
 
 exports.createTodo = async (req, res) => {
   try {
-    const { Title, Tasks, userId } = req.body;
+    const { Title, Tasks, userId, userName } = req.body;
 
     if (!Title && Tasks.length > 0) {
       throw new Error("All fields are mandatory");
     }
 
-    const user = await UserTodo.create({ Title, Tasks, userId });
+    const user = await UserTodo.create({ Title, Tasks, userId, userName });
 
     res.status(201).json({
       success: true,
       message: "Todo created successfully",
       user,
-      userId,
     });
   } catch (error) {
     console.log(error);
@@ -136,11 +135,13 @@ exports.createTodo = async (req, res) => {
 
 exports.getTodos = async (req, res) => {
   try {
-    const user = await UserTodo.find();
-    res.status(401).json({
+    const userId = req.body.userId;
+    const user = await UserTodo.find({ userId: `${userId}` });
+    res.status(200).json({
       success: true,
       user,
     });
+    console.log(user);
   } catch (error) {
     console.log(error);
     console.log("Fail to get todos");
