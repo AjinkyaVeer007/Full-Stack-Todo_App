@@ -26,16 +26,15 @@ function EditDelete(props) {
 
   const handleEdit = async (user) => {
     props.setTaskArr([null]);
-    const editTitle = user.Title;
-    const id = user._id;
-    props.setTitle({ title: editTitle, id: id });
+    props.setTitle({ ...props.mainTitle, title: user.Title, id: user._id });
     props.setTaskArr([...user.Tasks]);
+    console.log(props.title, "mytitle");
   };
 
   return (
     <div className="flex justify-end gap-2 mt-8">
-      <BiEdit onClick={() => handleEdit(props.todo)} />
-      <AiFillDelete onClick={() => handleDelete(props.todo)} />
+      <BiEdit size={"20px"} onClick={() => handleEdit(props.todo)} />
+      <AiFillDelete size={"20px"} onClick={() => handleDelete(props.todo)} />
     </div>
   );
 }

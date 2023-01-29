@@ -25,7 +25,7 @@ const Dashboard = () => {
   });
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-[#303030]">
       <Navbar />
       <CreateTodo />
     </div>

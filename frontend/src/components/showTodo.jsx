@@ -53,7 +53,7 @@ function ShowTodo(props) {
         config
       );
       console.log(res);
-      props.setTitle("");
+      props.mainTitle.title = "";
       props.setTaskArr([]);
     } else {
       const data = {
@@ -77,7 +77,8 @@ function ShowTodo(props) {
         config
       );
       console.log(res);
-      props.setTitle("");
+      // props.setTitle({ ...props.mainTitle, title: "ABC" });
+      props.mainTitle.title = "";
       props.setTaskArr([]);
     }
   };
@@ -85,16 +86,16 @@ function ShowTodo(props) {
   //get all todos created by that authorized user only
 
   return (
-    <div className="flex flex-col justify-between rounded bg-red-500 h-50 w-[400px] px-4">
+    <div className="hover:shadow-lg hover:shadow-red-500 flex flex-col justify-between h-[350px] overflow-auto transition ease-in-out delay-250 block rounded-lg bg-gradient-to-r from-teal-200 to-lime-200 lg:w-2/4 w-auto text-center">
       <div>
-        <h1 className="text-white text-center mt-2 text-2xl font-semibold font-sans border-b-2 border-red-400 p-2">
-          {props.title}
+        <h1 className="text-[#303030] text-center mt-2 text-2xl font-semibold font-sans border-b-2 border-red-400 p-2">
+          {props.title || "Preview My Todo"}
         </h1>
         {props.arr.map((element, index) => {
           return (
             <div
               id={index}
-              className="flex justify-between items-center text-white border-b-2 border-red-400 p-2"
+              className="flex justify-between items-center text-[#303030] border-b-2 border-red-400 p-2"
             >
               <li>{element}</li>
               <div className="flex gap-4">
