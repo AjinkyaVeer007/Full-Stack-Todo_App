@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import axios from "axios";
@@ -23,14 +23,13 @@ function EditDelete(props) {
   };
 
   //Edit Todo logic
-  const [editTasks, setEditTasks] = useState([]);
 
   const handleEdit = async (user) => {
     props.setTaskArr([null]);
     const editTitle = user.Title;
-    props.setTitle(editTitle);
-    setEditTasks(user.Tasks);
-    props.setTaskArr([...editTasks]);
+    const id = user._id;
+    props.setTitle({ title: editTitle, id: id });
+    props.setTaskArr([...user.Tasks]);
   };
 
   return (

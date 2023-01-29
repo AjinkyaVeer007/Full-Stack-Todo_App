@@ -29,31 +29,57 @@ function ShowTodo(props) {
     props.setTaskArr(props.arr.filter((task) => task !== selectedTask));
   }
 
-  // Saving created todo in db
+  // Saving created or edited todo in db
   const newTodo = async () => {
-    const data = {
-      Title: props.title,
-      Tasks: props.arr,
-      userId: localStorage.getItem("userId"),
-      userName: localStorage.getItem("userName"),
-    };
-    console.log(data);
-    const config = {
-      headers: {
-        Authorization: `${localStorage.getItem("token")}`,
+    if (!props.id) {
+      const data = {
+        Title: props.title,
+        Tasks: props.arr,
         userId: localStorage.getItem("userId"),
-      },
-    };
-    console.log(config);
+        userName: localStorage.getItem("userName"),
+      };
+      console.log(data);
+      const config = {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+          userId: localStorage.getItem("userId"),
+        },
+      };
+      console.log(config);
 
-    const res = await axios.post(
-      "http://localhost:4000/createTodo",
-      data,
-      config
-    );
-    console.log(res);
-    props.setTitle("");
-    props.setTaskArr([]);
+      const res = await axios.post(
+        "http://localhost:4000/createTodo",
+        data,
+        config
+      );
+      console.log(res);
+      props.setTitle("");
+      props.setTaskArr([]);
+    } else {
+      const data = {
+        Title: props.title,
+        Tasks: props.arr,
+        userId: localStorage.getItem("userId"),
+        userName: localStorage.getItem("userName"),
+      };
+      console.log(data);
+      const config = {
+        headers: {
+          Authorization: `${localStorage.getItem("token")}`,
+          userId: localStorage.getItem("userId"),
+        },
+      };
+      console.log(config);
+
+      const res = await axios.put(
+        `http://localhost:4000/editTodo/${props.id}`,
+        data,
+        config
+      );
+      console.log(res);
+      props.setTitle("");
+      props.setTaskArr([]);
+    }
   };
 
   //get all todos created by that authorized user only
