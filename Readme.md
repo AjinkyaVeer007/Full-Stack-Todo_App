@@ -23,8 +23,8 @@
 
 ## Snaps of project
 
-![alt SS](assets/SS3.png)
-![alt SS](assets/SS4.png)
+![alt SS](assets/SS3.PNG)
+![alt SS](assets/SS4.PNG)
 ![alt SS](assets/SS1.png)
 ![alt SS](assets/SS2.png)
 
