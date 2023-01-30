@@ -32,7 +32,7 @@ function ShowMyTodo(props) {
 
   useEffect(() => {
     getAllTodos();
-  }, []);
+  }, [alltodos]);
 
   //Add different colours to every todo card
   const colorTray = [
